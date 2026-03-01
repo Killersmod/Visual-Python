@@ -1,0 +1,86 @@
+{
+  "template_id": "basic_api_request",
+  "name": "Basic API Request",
+  "description": "Makes an HTTP GET request to an API endpoint and prints the response. Ideal for fetching data from REST APIs.",
+  "category": "Web Scraping",
+  "difficulty": "beginner",
+  "tags": ["api", "http", "get", "request", "json", "beginner"],
+  "author": "VisualPython Team",
+  "version": "1.0.0",
+  "preview_description": "Make HTTP request and print response",
+  "graph_data": {
+    "id": "template-basic-api",
+    "metadata": {
+      "name": "Basic API Request",
+      "description": "Makes an HTTP GET request and prints the response",
+      "author": "VisualPython Team",
+      "version": "1.0.0",
+      "tags": ["api", "http", "template"]
+    },
+    "nodes": [
+      {
+        "id": "start-1",
+        "type": "start",
+        "name": "Start",
+        "position": {"x": 100, "y": 200}
+      },
+      {
+        "id": "http-request-1",
+        "type": "http_request",
+        "name": "API Request",
+        "position": {"x": 300, "y": 200},
+        "properties": {
+          "url": "https://jsonplaceholder.typicode.com/posts/1",
+          "method": "GET",
+          "headers": {},
+          "body": "",
+          "timeout": 30.0
+        }
+      },
+      {
+        "id": "print-1",
+        "type": "print",
+        "name": "Print Response",
+        "position": {"x": 550, "y": 200},
+        "properties": {
+          "message": "",
+          "prefix": "[API Response]",
+          "add_timestamp": true,
+          "add_newline": true
+        }
+      },
+      {
+        "id": "end-1",
+        "type": "end",
+        "name": "End",
+        "position": {"x": 750, "y": 200}
+      }
+    ],
+    "connections": [
+      {
+        "source_node_id": "start-1",
+        "source_port_name": "exec_out",
+        "target_node_id": "http-request-1",
+        "target_port_name": "exec_in"
+      },
+      {
+        "source_node_id": "http-request-1",
+        "source_port_name": "exec_out",
+        "target_node_id": "print-1",
+        "target_port_name": "exec_in"
+      },
+      {
+        "source_node_id": "http-request-1",
+        "source_port_name": "response_body",
+        "target_node_id": "print-1",
+        "target_port_name": "message"
+      },
+      {
+        "source_node_id": "print-1",
+        "source_port_name": "exec_out",
+        "target_node_id": "end-1",
+        "target_port_name": "exec_in"
+      }
+    ]
+  }
+}

@@ -1,0 +1,100 @@
+{
+  "template_id": "copy_file_content",
+  "name": "Copy File Content",
+  "description": "Reads content from one file and writes it to another file. Useful for file duplication and backup tasks.",
+  "category": "File Processing",
+  "difficulty": "beginner",
+  "tags": ["file", "read", "write", "copy", "beginner"],
+  "author": "VisualPython Team",
+  "version": "1.0.0",
+  "preview_description": "Read from one file and write to another",
+  "graph_data": {
+    "id": "template-copy-file",
+    "metadata": {
+      "name": "Copy File Content",
+      "description": "Reads content from a source file and writes it to a destination file",
+      "author": "VisualPython Team",
+      "version": "1.0.0",
+      "tags": ["file", "copy", "template"]
+    },
+    "nodes": [
+      {
+        "id": "start-1",
+        "type": "start",
+        "name": "Start",
+        "position": {"x": 100, "y": 200}
+      },
+      {
+        "id": "file-read-1",
+        "type": "file_read",
+        "name": "Read Source File",
+        "position": {"x": 300, "y": 200},
+        "properties": {
+          "file_path": "source.txt",
+          "encoding": "utf-8"
+        }
+      },
+      {
+        "id": "file-write-1",
+        "type": "file_write",
+        "name": "Write Destination File",
+        "position": {"x": 550, "y": 200},
+        "properties": {
+          "file_path": "destination.txt",
+          "append": false,
+          "encoding": "utf-8"
+        }
+      },
+      {
+        "id": "print-1",
+        "type": "print",
+        "name": "Print Status",
+        "position": {"x": 800, "y": 200},
+        "properties": {
+          "message": "File copied successfully!",
+          "prefix": "",
+          "add_timestamp": true,
+          "add_newline": true
+        }
+      },
+      {
+        "id": "end-1",
+        "type": "end",
+        "name": "End",
+        "position": {"x": 1000, "y": 200}
+      }
+    ],
+    "connections": [
+      {
+        "source_node_id": "start-1",
+        "source_port_name": "exec_out",
+        "target_node_id": "file-read-1",
+        "target_port_name": "exec_in"
+      },
+      {
+        "source_node_id": "file-read-1",
+        "source_port_name": "exec_out",
+        "target_node_id": "file-write-1",
+        "target_port_name": "exec_in"
+      },
+      {
+        "source_node_id": "file-read-1",
+        "source_port_name": "content",
+        "target_node_id": "file-write-1",
+        "target_port_name": "content"
+      },
+      {
+        "source_node_id": "file-write-1",
+        "source_port_name": "exec_out",
+        "target_node_id": "print-1",
+        "target_port_name": "exec_in"
+      },
+      {
+        "source_node_id": "print-1",
+        "source_port_name": "exec_out",
+        "target_node_id": "end-1",
+        "target_port_name": "exec_in"
+      }
+    ]
+  }
+}

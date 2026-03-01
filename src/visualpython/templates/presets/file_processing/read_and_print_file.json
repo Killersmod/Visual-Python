@@ -1,0 +1,83 @@
+{
+  "template_id": "read_and_print_file",
+  "name": "Read and Print File",
+  "description": "A simple template that reads a file and prints its contents to the console. Great for learning basic file operations.",
+  "category": "File Processing",
+  "difficulty": "beginner",
+  "tags": ["file", "read", "print", "beginner"],
+  "author": "VisualPython Team",
+  "version": "1.0.0",
+  "preview_description": "Read a file and print its contents",
+  "graph_data": {
+    "id": "template-read-print-file",
+    "metadata": {
+      "name": "Read and Print File",
+      "description": "Reads a file and prints its contents to the console",
+      "author": "VisualPython Team",
+      "version": "1.0.0",
+      "tags": ["file", "template"]
+    },
+    "nodes": [
+      {
+        "id": "start-1",
+        "type": "start",
+        "name": "Start",
+        "position": {"x": 100, "y": 200}
+      },
+      {
+        "id": "file-read-1",
+        "type": "file_read",
+        "name": "File Read",
+        "position": {"x": 300, "y": 200},
+        "properties": {
+          "file_path": "input.txt",
+          "encoding": "utf-8"
+        }
+      },
+      {
+        "id": "print-1",
+        "type": "print",
+        "name": "Print Content",
+        "position": {"x": 500, "y": 200},
+        "properties": {
+          "message": "",
+          "prefix": "[File Content]",
+          "add_timestamp": false,
+          "add_newline": true
+        }
+      },
+      {
+        "id": "end-1",
+        "type": "end",
+        "name": "End",
+        "position": {"x": 700, "y": 200}
+      }
+    ],
+    "connections": [
+      {
+        "source_node_id": "start-1",
+        "source_port_name": "exec_out",
+        "target_node_id": "file-read-1",
+        "target_port_name": "exec_in"
+      },
+      {
+        "source_node_id": "file-read-1",
+        "source_port_name": "exec_out",
+        "target_node_id": "print-1",
+        "target_port_name": "exec_in"
+      },
+      {
+        "source_node_id": "file-read-1",
+        "source_port_name": "content",
+        "target_node_id": "print-1",
+        "target_port_name": "message"
+      },
+      {
+        "source_node_id": "print-1",
+        "source_port_name": "exec_out",
+        "target_node_id": "end-1",
+        "target_port_name": "exec_in"
+      }
+    ]
+  }
+}

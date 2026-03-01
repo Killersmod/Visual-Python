@@ -1,0 +1,125 @@
+{
+  "template_id": "api_data_transform",
+  "name": "API Data Transform",
+  "description": "Fetches data from an API, parses the JSON response, and processes it for further use. A common pattern for integrating with external services.",
+  "category": "Data Processing",
+  "difficulty": "intermediate",
+  "tags": ["api", "json", "parse", "transform", "intermediate"],
+  "author": "VisualPython Team",
+  "version": "1.0.0",
+  "preview_description": "Fetch, parse, and transform API data",
+  "graph_data": {
+    "id": "template-api-transform",
+    "metadata": {
+      "name": "API Data Transform",
+      "description": "Fetches API data, parses JSON, and processes it",
+      "author": "VisualPython Team",
+      "version": "1.0.0",
+      "tags": ["api", "json", "transform", "template"]
+    },
+    "nodes": [
+      {
+        "id": "start-1",
+        "type": "start",
+        "name": "Start",
+        "position": {"x": 100, "y": 200}
+      },
+      {
+        "id": "http-request-1",
+        "type": "http_request",
+        "name": "Fetch API Data",
+        "position": {"x": 300, "y": 200},
+        "properties": {
+          "url": "https://jsonplaceholder.typicode.com/users/1",
+          "method": "GET",
+          "headers": {"Accept": "application/json"},
+          "body": "",
+          "timeout": 30.0
+        }
+      },
+      {
+        "id": "json-parse-1",
+        "type": "json_parse",
+        "name": "Parse Response",
+        "position": {"x": 550, "y": 200},
+        "properties": {
+          "json_string": ""
+        }
+      },
+      {
+        "id": "print-status-1",
+        "type": "print",
+        "name": "Print Status",
+        "position": {"x": 550, "y": 50},
+        "properties": {
+          "message": "Data fetched and parsed successfully",
+          "prefix": "[Info]",
+          "add_timestamp": true,
+          "add_newline": true
+        }
+      },
+      {
+        "id": "print-data-1",
+        "type": "print",
+        "name": "Print Data",
+        "position": {"x": 800, "y": 200},
+        "properties": {
+          "message": "",
+          "prefix": "[Data]",
+          "add_timestamp": false,
+          "add_newline": true
+        }
+      },
+      {
+        "id": "end-1",
+        "type": "end",
+        "name": "End",
+        "position": {"x": 1000, "y": 200}
+      }
+    ],
+    "connections": [
+      {
+        "source_node_id": "start-1",
+        "source_port_name": "exec_out",
+        "target_node_id": "http-request-1",
+        "target_port_name": "exec_in"
+      },
+      {
+        "source_node_id": "http-request-1",
+        "source_port_name": "exec_out",
+        "target_node_id": "json-parse-1",
+        "target_port_name": "exec_in"
+      },
+      {
+        "source_node_id": "http-request-1",
+        "source_port_name": "response_body",
+        "target_node_id": "json-parse-1",
+        "target_port_name": "json_string"
+      },
+      {
+        "source_node_id": "json-parse-1",
+        "source_port_name": "exec_out",
+        "target_node_id": "print-status-1",
+        "target_port_name": "exec_in"
+      },
+      {
+        "source_node_id": "print-status-1",
+        "source_port_name": "exec_out",
+        "target_node_id": "print-data-1",
+        "target_port_name": "exec_in"
+      },
+      {
+        "source_node_id": "json-parse-1",
+        "source_port_name": "data",
+        "target_node_id": "print-data-1",
+        "target_port_name": "message"
+      },
+      {
+        "source_node_id": "print-data-1",
+        "source_port_name": "exec_out",
+        "target_node_id": "end-1",
+        "target_port_name": "exec_in"
+      }
+    ]
+  }
+}

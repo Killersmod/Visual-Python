@@ -1,0 +1,104 @@
+{
+  "template_id": "json_file_parser",
+  "name": "JSON File Parser",
+  "description": "Reads a JSON file, parses its contents, and prints the structured data. Essential for working with JSON configuration files or data exports.",
+  "category": "Data Processing",
+  "difficulty": "beginner",
+  "tags": ["json", "parse", "file", "read", "beginner"],
+  "author": "VisualPython Team",
+  "version": "1.0.0",
+  "preview_description": "Read and parse a JSON file",
+  "graph_data": {
+    "id": "template-json-parser",
+    "metadata": {
+      "name": "JSON File Parser",
+      "description": "Reads a JSON file and parses it into a Python object",
+      "author": "VisualPython Team",
+      "version": "1.0.0",
+      "tags": ["json", "parse", "file", "template"]
+    },
+    "nodes": [
+      {
+        "id": "start-1",
+        "type": "start",
+        "name": "Start",
+        "position": {"x": 100, "y": 200}
+      },
+      {
+        "id": "file-read-1",
+        "type": "file_read",
+        "name": "Read JSON File",
+        "position": {"x": 300, "y": 200},
+        "properties": {
+          "file_path": "data.json",
+          "encoding": "utf-8"
+        }
+      },
+      {
+        "id": "json-parse-1",
+        "type": "json_parse",
+        "name": "Parse JSON",
+        "position": {"x": 550, "y": 200},
+        "properties": {
+          "json_string": ""
+        }
+      },
+      {
+        "id": "print-1",
+        "type": "print",
+        "name": "Print Parsed Data",
+        "position": {"x": 800, "y": 200},
+        "properties": {
+          "message": "",
+          "prefix": "[Parsed JSON]",
+          "add_timestamp": false,
+          "add_newline": true
+        }
+      },
+      {
+        "id": "end-1",
+        "type": "end",
+        "name": "End",
+        "position": {"x": 1000, "y": 200}
+      }
+    ],
+    "connections": [
+      {
+        "source_node_id": "start-1",
+        "source_port_name": "exec_out",
+        "target_node_id": "file-read-1",
+        "target_port_name": "exec_in"
+      },
+      {
+        "source_node_id": "file-read-1",
+        "source_port_name": "exec_out",
+        "target_node_id": "json-parse-1",
+        "target_port_name": "exec_in"
+      },
+      {
+        "source_node_id": "file-read-1",
+        "source_port_name": "content",
+        "target_node_id": "json-parse-1",
+        "target_port_name": "json_string"
+      },
+      {
+        "source_node_id": "json-parse-1",
+        "source_port_name": "exec_out",
+        "target_node_id": "print-1",
+        "target_port_name": "exec_in"
+      },
+      {
+        "source_node_id": "json-parse-1",
+        "source_port_name": "data",
+        "target_node_id": "print-1",
+        "target_port_name": "message"
+      },
+      {
+        "source_node_id": "print-1",
+        "source_port_name": "exec_out",
+        "target_node_id": "end-1",
+        "target_port_name": "exec_in"
+      }
+    ]
+  }
+}

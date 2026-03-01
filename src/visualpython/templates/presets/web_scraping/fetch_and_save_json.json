@@ -1,0 +1,103 @@
+{
+  "template_id": "fetch_and_save_json",
+  "name": "Fetch and Save JSON",
+  "description": "Fetches data from an API endpoint and saves the JSON response to a local file. Perfect for data collection and caching API responses.",
+  "category": "Web Scraping",
+  "difficulty": "intermediate",
+  "tags": ["api", "http", "json", "file", "save", "intermediate"],
+  "author": "VisualPython Team",
+  "version": "1.0.0",
+  "preview_description": "Fetch API data and save to JSON file",
+  "graph_data": {
+    "id": "template-fetch-save-json",
+    "metadata": {
+      "name": "Fetch and Save JSON",
+      "description": "Fetches JSON data from an API and saves it to a file",
+      "author": "VisualPython Team",
+      "version": "1.0.0",
+      "tags": ["api", "json", "file", "template"]
+    },
+    "nodes": [
+      {
+        "id": "start-1",
+        "type": "start",
+        "name": "Start",
+        "position": {"x": 100, "y": 200}
+      },
+      {
+        "id": "http-request-1",
+        "type": "http_request",
+        "name": "Fetch API Data",
+        "position": {"x": 300, "y": 200},
+        "properties": {
+          "url": "https://jsonplaceholder.typicode.com/posts",
+          "method": "GET",
+          "headers": {"Accept": "application/json"},
+          "body": "",
+          "timeout": 30.0
+        }
+      },
+      {
+        "id": "file-write-1",
+        "type": "file_write",
+        "name": "Save to File",
+        "position": {"x": 550, "y": 200},
+        "properties": {
+          "file_path": "api_response.json",
+          "append": false,
+          "encoding": "utf-8"
+        }
+      },
+      {
+        "id": "print-1",
+        "type": "print",
+        "name": "Print Status",
+        "position": {"x": 800, "y": 200},
+        "properties": {
+          "message": "Data saved to api_response.json",
+          "prefix": "[Success]",
+          "add_timestamp": true,
+          "add_newline": true
+        }
+      },
+      {
+        "id": "end-1",
+        "type": "end",
+        "name": "End",
+        "position": {"x": 1000, "y": 200}
+      }
+    ],
+    "connections": [
+      {
+        "source_node_id": "start-1",
+        "source_port_name": "exec_out",
+        "target_node_id": "http-request-1",
+        "target_port_name": "exec_in"
+      },
+      {
+        "source_node_id": "http-request-1",
+        "source_port_name": "exec_out",
+        "target_node_id": "file-write-1",
+        "target_port_name": "exec_in"
+      },
+      {
+        "source_node_id": "http-request-1",
+        "source_port_name": "response_body",
+        "target_node_id": "file-write-1",
+        "target_port_name": "content"
+      },
+      {
+        "source_node_id": "file-write-1",
+        "source_port_name": "exec_out",
+        "target_node_id": "print-1",
+        "target_port_name": "exec_in"
+      },
+      {
+        "source_node_id": "print-1",
+        "source_port_name": "exec_out",
+        "target_node_id": "end-1",
+        "target_port_name": "exec_in"
+      }
+    ]
+  }
+}

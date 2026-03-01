@@ -1,0 +1,4 @@
+# VisualPython Core Dependencies
+# Install with: pip install -r requirements.txt
+
+PyQt6>=6.5.0

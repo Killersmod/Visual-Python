@@ -1,0 +1,23 @@
+# VisualPython Development Dependencies
+# Install with: pip install -r requirements-dev.txt
+
+# Include core dependencies
+-r requirements.txt
+
+# Testing
+pytest>=7.4.0
+pytest-cov>=4.1.0
+pytest-qt>=4.2.0
+
+# Type checking
+mypy>=1.5.0
+
+# Code formatting
+black>=23.9.0
+isort>=5.12.0
+
+# Linting
+flake8>=6.1.0
+
+# Pre-commit hooks
+pre-commit>=3.4.0
