@@ -17,6 +17,7 @@ A visual node-based scripting environment for Python. Build Python programs by c
 - **Project Serialization** — Save and load projects as `.vpy` files
 - **Variable Management** — Persistent variables across sessions with JSON and SQLite backends
 - **Library Export/Import** — Share reusable node libraries
+- **Dependency Management** — Automatically scans and visualizes subgraph dependencies across workflows, detects circular and broken references, and persists dependency trees with SQLite-backed storage
 - **Workflow Templates** — Pre-built templates for data processing, file processing, and web scraping
 
 ## Requirements
