@@ -8,17 +8,27 @@ A visual node-based scripting environment for Python. Build Python programs by c
 
 ## Features
 
-- **Node-Based Visual Programming** — Create workflows by dragging, dropping, and connecting nodes on a canvas
-- **45+ Built-in Nodes** — Control flow, I/O, math, strings, lists, JSON, HTTP requests, regex, database queries, threading, and more
-- **Live Execution** — Run graphs with real-time output capture and execution summaries
-- **Code Generation** — Generate executable Python code from visual graphs
-- **Subgraphs** — Encapsulate reusable logic into nested subgraph nodes
-- **Undo/Redo** — Full command-based undo/redo for all operations
-- **Project Serialization** — Save and load projects as `.vpy` files
-- **Variable Management** — Persistent variables across sessions with JSON and SQLite backends
-- **Library Export/Import** — Share reusable node libraries
-- **Dependency Management** — Automatically scans and visualizes subgraph dependencies across workflows, detects circular and broken references, and persists dependency trees with SQLite-backed storage
-- **Workflow Templates** — Pre-built templates for data processing, file processing, and web scraping
+- **Node-Based Visual Programming** — Drag, drop, and connect nodes on a canvas to build Python programs visually. Each node displays live syntax-highlighted code previews, execution state indicators, and inline value editors so you can tweak inputs directly on the canvas without creating extra nodes.
+
+- **45+ Built-in Nodes** — A rich library spanning control flow (if/else, for, while, try/catch), I/O (file read/write, HTTP requests, database queries), math, string and list operations (map, filter, reduce), regex, JSON, threading with join synchronization, and more. Nodes are organized by category in a searchable palette with drag-and-drop placement.
+
+- **Live Execution** — Execute graphs in a background thread with real-time streaming output, per-node progress tracking, and a continue-on-error mode that marks downstream nodes as skipped rather than halting the entire workflow. Includes step-through debugging with pause/resume and built-in runtime type inference that catches data flow mismatches as they happen.
+
+- **Code Generation** — Compile visual graphs into clean, executable Python scripts with proper imports, indentation, and control flow. The compiler is scope-aware, tracking conditional variable definitions across branches and warning about unsafe access paths before you ever run the code.
+
+- **Subgraphs** — Encapsulate reusable logic into nested subgraph nodes that act like functions. Subgraphs can be embedded directly or referenced from external `.vpy`/`.vnl` files, with automatic port synchronization, version tracking, and broken-reference detection.
+
+- **Undo/Redo** — Every operation is reversible through a command-based undo/redo system. Consecutive edits like typing or dragging are automatically merged into single undo steps, and composite commands let bulk operations (like deleting multiple nodes) be undone in one action.
+
+- **Project Serialization** — Save and load complete workflows as `.vpy` files with automatic version tracking. The serializer preserves all nodes, connections, metadata, and graph structure, with backward-compatible loading for older formats.
+
+- **Variable Management** — A thread-safe global variable store shared across all nodes, with atomic operations (increment, get-and-set, compare-and-swap) for safe concurrent access during threaded execution. Supports optional type validation and persists across sessions via JSON or SQLite backends.
+
+- **Library Export/Import** — Export selected nodes and their connections as reusable `.vnl` library files with metadata like name, author, version, and tags. Importing automatically remaps IDs to prevent conflicts and offsets positions for clean placement.
+
+- **Dependency Management** — Automatically scans and visualizes subgraph dependencies across workflows in a dedicated panel with forward, reverse, and saved tree views. Detects circular and broken references, color-codes dependency types, and persists named dependency trees with SQLite-backed storage for change tracking.
+
+- **Workflow Templates** — Browse pre-built starter templates for data processing, file operations, and web scraping in a searchable panel organized by category and difficulty level. Instantiate templates by double-clicking or dragging them onto the canvas to jumpstart new workflows.
 
 ## Requirements
 
